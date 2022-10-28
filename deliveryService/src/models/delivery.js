@@ -1,8 +1,8 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const db = require('../utilities/dbHelper');
+const { Sequelize, DataTypes } = require("sequelize");
+const db = require("../utilities/dbHelper");
 
 const Delivery = db.define(
-  'delivery',
+  "delivery",
   {
     _id: {
       type: Sequelize.UUID,
@@ -18,7 +18,7 @@ const Delivery = db.define(
       allowNull: false,
     },
     Date: {
-      type: DataTypes.Date(100),
+      type: DataTypes.DATE(100),
       allowNull: false,
     },
     telephone: {
@@ -29,18 +29,18 @@ const Delivery = db.define(
       type: DataTypes.STRING(300),
       allowNull: false,
     },
-  }
-  ,{
+  },
+  {
     logging: false,
   }
 );
 
-Delivery.sync()
+Delivery.sync();
 
 // Product.sync().then((res) => {
-//   Product.create({ 
+//   Product.create({
 
-//     name: "130ft Led", 
+//     name: "130ft Led",
 //     description: "Lights Keepsmile APP Control Music Sync Color Changing ",
 //     discount: 4,
 //     price : 1200,
@@ -49,11 +49,9 @@ Delivery.sync()
 //     count: 20,
 //     image_path:"https://m.media-amazon.com/images/I/81f9ShZY6nL._AC_SL1500_.jpg"
 
-
 //   }).then((res) => {
 //     console.log(`Insert successful: ${res._id}`);
 //   });
 // });
 
-
-module.exports= Product;
+module.exports = Delivery;

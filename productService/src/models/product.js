@@ -1,8 +1,8 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const db = require('../utilities/dbHelper');
+const { Sequelize, DataTypes } = require("sequelize");
+const db = require("../utilities/dbHelper");
 
 const Product = db.define(
-  'product',
+  "product",
   {
     _id: {
       type: Sequelize.UUID,
@@ -18,19 +18,19 @@ const Product = db.define(
       allowNull: false,
     },
     price: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     discount: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
     category: {
-      type: DataTypes.ENUM('clothing', 'food', 'decor'),
+      type: DataTypes.ENUM("clothing", "food", "decor"),
       allowNull: false,
     },
     count: {
-      type: DataTypes.INTEGER(30),
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     image_path: {
@@ -40,19 +40,19 @@ const Product = db.define(
     userid: {
       type: DataTypes.STRING(),
       allowNull: false,
-    }
-  }
-  ,{
+    },
+  },
+  {
     logging: false,
   }
 );
 
-Product.sync()
+Product.sync();
 
 // Product.sync().then((res) => {
-//   Product.create({ 
+//   Product.create({
 
-//     name: "130ft Led", 
+//     name: "130ft Led",
 //     description: "Lights Keepsmile APP Control Music Sync Color Changing ",
 //     discount: 4,
 //     price : 1200,
@@ -61,11 +61,9 @@ Product.sync()
 //     count: 20,
 //     image_path:"https://m.media-amazon.com/images/I/81f9ShZY6nL._AC_SL1500_.jpg"
 
-
 //   }).then((res) => {
 //     console.log(`Insert successful: ${res._id}`);
 //   });
 // });
 
-
-module.exports= Product;
+module.exports = Product;
