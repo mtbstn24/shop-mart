@@ -1,8 +1,8 @@
-const { Sequelize, DataTypes } = require('sequelize');
-const db = require('../utilities/dbHelper');
+const { Sequelize, DataTypes } = require("sequelize");
+const db = require("../utilities/dbHelper");
 
 const RegisteredUser = db.define(
-  'ruser',
+  "ruser",
   {
     userid: {
       type: Sequelize.UUID,
@@ -25,20 +25,20 @@ const RegisteredUser = db.define(
       allowNull: false,
     },
     role: {
-      type: DataTypes.ENUM('Buyer','Seller'),
+      type: DataTypes.ENUM("Buyer", "Seller"),
       allowNull: false,
     },
-  }
-  ,{
+  },
+  {
     logging: false,
   }
 );
 
-RegisteredUser.sync()
+RegisteredUser.sync();
 // RegisteredUser.sync().then((res) => {
 //   RegisteredUser.create({
-//     userid:"87adfe52-d2b8-42cd-91ff-6c764e97e717", 
-//     username: "Vinothini", 
+//     userid:"87adfe52-d2b8-42cd-91ff-6c764e97e717",
+//     username: "Vinothini",
 //     password: "12345",
 //     contact : "0771234567",
 //     address: "Station road, kodikaamam",
@@ -51,5 +51,4 @@ RegisteredUser.sync()
 //   });
 // });
 
-
-module.exports= RegisteredUser;
+module.exports = RegisteredUser;

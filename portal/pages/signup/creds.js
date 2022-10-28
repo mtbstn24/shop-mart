@@ -41,7 +41,7 @@ const Creds = () => {
     };
     console.log(form);
     axios
-      .post("http:localhost:8001/api/ruser", form)
+      .post("http://localhost:8001/api/ruser", form)
       .then((res) => {
         //   push({pathname:'/signup/creds', query:{userid:res.data.user._userid}},'/signup/creds')
         Swal.fire({
@@ -115,8 +115,8 @@ const Creds = () => {
                 className="form-control"
                 {...register("role", { required: true })}
               >
-                <option value="Customer">Customer</option>
-                <option value="Provider">Provider</option>
+                <option value="Buyer">Buyer</option>
+                <option value="Seller">Seller</option>
               </select>
             </div>
             <div className="d-grid gap-2 mt-3">

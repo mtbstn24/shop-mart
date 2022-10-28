@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 import { filterByCategory, filterByPrice } from "../../utils/product";
 import { CartContext, CartDispatchContext } from "../../context/productContext";
-import axios from "../../utils/axios";
+import axios from "axios";
 import React, { useContext, useState, useEffect } from "react";
 <script type="text/javascript" src="../../public/js/sidebar.js"></script>;
 
@@ -200,7 +200,7 @@ export default function product() {
 
       console.log(formData);
       axios
-        .put(`/product/${update}`, formData)
+        .put(`http://localhost:4000/api/product/${update}`, formData)
         .then((res) => {
           const newProduct = res.data.product.res[1];
           setProducts(
@@ -216,7 +216,7 @@ export default function product() {
       formData.image_path = path;
       console.log(formData);
       axios
-        .post(`/product/`, formData)
+        .post(`http://localhost:4000/api/product`, formData)
         .then((res) => {
           const newProduct = res.data.product.res[1];
           setProducts(
@@ -247,7 +247,7 @@ export default function product() {
     };
 
     const getProducts = () => {
-      return axios.get("/product");
+      return axios.get("http://localhost:4000/api/product");
     };
 
     Promise.all([getProducts()])

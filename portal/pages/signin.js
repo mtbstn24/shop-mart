@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 // const dotenv = require('dotenv').config()
 // Form
 import { Controller, useForm } from "react-hook-form";
-import axios from "../utils/axios";
+import axios from "axios";
 
 import Swal from "sweetalert2";
 
@@ -33,7 +33,7 @@ const Basic = () => {
   const onSubmit = (formData) => {
     console.log(formData);
     axios
-      .post("/ruser/login", formData)
+      .post("http://localhost:8001/api/ruser/login", formData)
       .then((res) => {
         Swal.fire({
           icon: "success",
@@ -44,7 +44,7 @@ const Basic = () => {
         localStorage.setItem("user", JSON.stringify(res.data[0]));
         if (res.data[0].role === "Buyer") {
           push("/admin");
-        } else if (res.data[0].role === "Supplier") {
+        } else if (res.data[0].role === "Seller") {
           push("/provider");
         }
         // push({pathname:'/signup/otp', query:{otp:'hello',firstname:formData.firstname, lastname:formData.lastname,email:formData.email}},'/signup/otp')

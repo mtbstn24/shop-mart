@@ -36,7 +36,7 @@ const OTP = () => {
         email: router.query.email,
       };
       axios
-        .post("http:localhost:8001/api/user", form)
+        .post("http://localhost:8001/api/user", form)
         .then((res) => {
           Swal.fire({
             icon: "success",

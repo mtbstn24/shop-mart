@@ -29,7 +29,7 @@ const Basic = () => {
   const onSubmit = (formData) => {
     const otp = generateOtp();
     axios
-      .post("http:localhost:8001/api/user", formData)
+      .post("http://localhost:8001/api/user", formData)
       .then((res) => {
         // push({pathname:'/signup/creds', query:{userid:res.data.user._userid}},'/signup/creds')
         console.log(res.data.user);
