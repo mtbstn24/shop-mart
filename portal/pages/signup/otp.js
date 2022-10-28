@@ -5,7 +5,7 @@ import { BsGithub, BsTwitter, BsGoogle } from "react-icons/bs";
 // const dotenv = reNquire('dotenv').config()
 // Form
 import { Controller, useForm } from "react-hook-form";
-import axios from "../../utils/axios";
+import axios from "axios";
 
 import Swal from "sweetalert2";
 
@@ -36,7 +36,7 @@ const OTP = () => {
         email: router.query.email,
       };
       axios
-        .post("/user", form)
+        .post("http:localhost:8001/api/user", form)
         .then((res) => {
           Swal.fire({
             icon: "success",
