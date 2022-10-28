@@ -6,7 +6,7 @@ const errorHandler = require('./middlewares/errorMiddleware')
 const dotenv = require('dotenv').config()
 const multer = require("multer");
 // const upload = multer({dest: '../../uploads/'})
-const port = process.env.port || 5000
+const port = process.env.port || 4000
 
 const storageAdmin = multer.diskStorage({
   destination: '../../code/frontend/admin/public/uploads',
@@ -73,4 +73,4 @@ app.post("/api/uploadPortal",uploadPortal.single('files'), uploadFile);
 // Custom error handler
 app.use(errorHandler)
 
-app.listen(port, () => console.log(`Server has started on port ${port}`))
+app.listen(port, () => console.log(`Product Server has started on port ${port}`))
