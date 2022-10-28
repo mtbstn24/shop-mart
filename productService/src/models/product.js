@@ -29,10 +29,6 @@ const Product = db.define(
       type: DataTypes.ENUM('clothing', 'food', 'decor'),
       allowNull: false,
     },
-    comission: {
-      type: DataTypes.FLOAT(3),
-      allowNull: false,
-    },
     count: {
       type: DataTypes.INTEGER(30),
       allowNull: true,

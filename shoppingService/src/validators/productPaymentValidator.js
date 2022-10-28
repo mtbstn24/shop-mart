@@ -30,11 +30,6 @@ const setProductPayment = async (req) => {
         quantity: req.body.quantity,
         purchaseDate: req.body.purchaseDate,
         price: req.body.price,
-        commission: req.body.commission,
-        CusPayStatus: req.body.CusPayStatus,
-        CusPayDate: req.body.CusPayDate,
-        ProviderPayStatus: req.body.ProviderPayStatus,
-        ProviderPayDate: req.body.ProviderPayDate,
     }
 
     return validate(setProductPaymentSchema(), attributes);
@@ -49,11 +44,6 @@ const updateProductPayment= async (req) => {
         quantity: req.body.quantity,
         purchaseDate: req.body.purchaseDate,
         price: req.body.price,
-        commission: req.body.commission,
-        CusPayStatus: req.body.CusPayStatus,
-        CusPayDate: req.body.CusPayDate,
-        ProviderPayStatus: req.body.ProviderPayStatus,
-        ProviderPayDate: req.body.ProviderPayDate,
     }
 
     return validate(updateProductPaymentSchema(), attributes);

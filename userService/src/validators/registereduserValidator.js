@@ -24,9 +24,7 @@ const setUser = async(req)=>{
         password: req.body.password,
         contact: req.body.contact,
         address: req.body.address,
-        role: req.body.role,
-        status: req.body.status,
-        approvedAt: req.body.approvedAt
+        role: req.body.role
     }
     console.log(attributes)
     return validate(setUserSchema(), attributes);
@@ -39,9 +37,7 @@ const updateUser = async (req) => {
         password: req.body.password,
         contact: req.body.contact,
         address: req.body.address,
-        role: req.body.role,
-        status: req.body.status,
-        approvedAt: req.body.approvedAt
+        role: req.body.role
     }
     return validate(updateUserSchema(), attributes);
 };

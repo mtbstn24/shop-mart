@@ -30,26 +30,6 @@ const ProductPayment = db.define(
       type: DataTypes.FLOAT(3),
       allowNull: true,
     }, 
-    commission: {
-      type: DataTypes.FLOAT(3),
-      allowNull: true,
-    }, 
-    CusPayStatus: {
-      type: DataTypes.ENUM('Pending','Received'),
-      allowNull: false,
-    }, 
-    CusPayDate: {
-      type: DataTypes.DATE(),
-      allowNull: true,
-    },
-    ProviderPayStatus: {
-      type: DataTypes.ENUM('Pending', 'Paid'),
-      allowNull: false,
-    },
-    ProviderPayDate: {
-      type: DataTypes.DATE(),
-      allowNull: true,
-    }, 
 
   }
   ,{

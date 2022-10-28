@@ -13,8 +13,6 @@ const setUserSchema = () => Joi.object().keys({
   contact: Joi.string().required(),
   address: Joi.string().required(),
   role: Joi.string().required(),
-  status: Joi.string().required(),
-  approvedAt: Joi.date().required(),
 });
 
 const updateUserSchema = () => Joi.object().keys({
@@ -24,8 +22,6 @@ const updateUserSchema = () => Joi.object().keys({
   contact: Joi.string().required(),
   address: Joi.string().required(),
   role: Joi.string().required(),
-  status: Joi.string().required(),
-  approvedAt: Joi.date().required()
   });
 
 const deleteUserSchema = () => Joi.object().keys({

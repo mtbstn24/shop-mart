@@ -13,11 +13,6 @@ const setProductPaymentSchema = () => Joi.object().keys({
   quantity: Joi.number().required(),
   purchaseDate: Joi.date().required(),
   price: Joi.number().required(),
-  commission: Joi.number().required(),
-  CusPayStatus: Joi.string().required(),
-  CusPayDate: Joi.date().allow(null),
-  ProviderPayStatus: Joi.string().required(),
-  ProviderPayDate: Joi.date().allow(null),
 
 });
 
@@ -28,11 +23,6 @@ const updateProductPaymentSchema = () => Joi.object().keys({
   quantity: Joi.number().required(),
   purchaseDate: Joi.date().required(),
   price: Joi.number().required(),
-  commission: Joi.number().required(),
-  CusPayStatus: Joi.string().required(),
-  CusPayDate: Joi.date().allow(null),
-  ProviderPayStatus: Joi.string().required(),
-  ProviderPayDate: Joi.date().allow(null),
   
 });
 
