@@ -29,11 +29,6 @@ const setProductPayment = async (attributes) => {
   quantity: attributes.quantity,
   purchaseDate: attributes.purchaseDate,
   price: attributes.price,
-  commission: attributes.commission,
-  CusPayStatus: attributes.CusPayStatus,
-  CusPayDate: attributes.CusPayDate,
-  ProviderPayStatus: attributes.ProviderPayStatus,
-  ProviderPayDate: attributes.ProviderPayDate,
   }).then((res) => {
     console.log(`Insert successful: ${res._id}`);
     return {
@@ -57,11 +52,6 @@ const updateProductPayment = async (attributes) => {
   quantity: attributes.quantity,
   purchaseDate: attributes.purchaseDate,
   price: attributes.price,
-  commission: attributes.commission,
-  CusPayStatus: attributes.CusPayStatus,
-  CusPayDate: attributes.CusPayDate,
-  ProviderPayStatus: attributes.ProviderPayStatus,
-  ProviderPayDate: attributes.ProviderPayDate,
   }, {
     where: { _id: attributes.id },
     returning: true,

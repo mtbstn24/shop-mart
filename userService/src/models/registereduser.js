@@ -25,17 +25,9 @@ const RegisteredUser = db.define(
       allowNull: false,
     },
     role: {
-      type: DataTypes.ENUM('Customer','CorpCustomer','Provider','Staff','Admin'),
+      type: DataTypes.ENUM('Buyer','Seller'),
       allowNull: false,
     },
-    status: {
-      type: DataTypes.ENUM('Pending','Approved','Blocked'),
-      allowNull: false,
-    },
-    approvedAt: {
-        type: DataTypes.DATE(),
-        allowNull: false,
-    }
   }
   ,{
     logging: false,

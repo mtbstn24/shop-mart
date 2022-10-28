@@ -24,9 +24,7 @@ const setUser = async(attributes)=>{
         password: hpassword,
         contact: attributes.contact,
         address: attributes.address,
-        role: attributes.role,
-        status: attributes.status,
-        approvedAt: attributes.approvedAt},
+        role: attributes.role},
         {
             returning: true,
             plain: true
@@ -51,9 +49,7 @@ const updateUser = async(attributes)=>{
         password: attributes.password,
         contact: attributes.contact,
         address: attributes.address,
-        role: attributes.role,
-        status: attributes.status,
-        approvedAt: attributes.approvedAt
+        role: attributes.role
     },{
         where: { userid: attributes.userid },
         returning: true,
