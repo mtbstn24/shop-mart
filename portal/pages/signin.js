@@ -43,7 +43,7 @@ const Basic = () => {
         });
         localStorage.setItem("user", JSON.stringify(res.data[0]));
         if (res.data[0].role === "Buyer") {
-          push("/admin");
+          push("/dashboard");
         } else if (res.data[0].role === "Seller") {
           push("/provider");
         }

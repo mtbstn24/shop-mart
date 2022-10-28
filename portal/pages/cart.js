@@ -1,20 +1,18 @@
+import Footer from "../components/home/footer";
+import Header from "../components/home/header";
 
-import Footer from "../components/home/footer"
-import Header from "../components/home/header"
-
-
-import { CartContext, CartDispatchContext } from '../context/productContext';
+import { CartContext, CartDispatchContext } from "../context/productContext";
 import React, { useContext, useState, useEffect } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 import { useRouter } from "next/router";
 export default function Cart() {
-  const [cart,prices]= useContext(CartContext);
+  const [cart, prices] = useContext(CartContext);
   const [setCart, setPrices] = useContext(CartDispatchContext);
   // const router = useRouter()
   const [data, setData] = useState({ name: 0 });
   const [discount, setDiscount] = useState(0);
 
-  const router = useRouter()
+  const router = useRouter();
   // const data = 0
   const handleClick = (item) => {
     if (cart.indexOf(item) !== -1) return;
@@ -24,25 +22,24 @@ export default function Cart() {
   //   item.count ? setData({name : 1 }) : setData({name : 0})
   // ))
 
-  const change_cart = ()=>{
-      localStorage.removeItem('cart');
-      localStorage.setItem('cart',JSON.stringify(cart))
-  }
+  const change_cart = () => {
+    localStorage.removeItem("cart");
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
   const handleChange = (item, d) => {
     const ind = cart.indexOf(item);
     const arr = cart;
-    item.count ? setData({name : 0 }) : setData({name : 1})
+    item.count ? setData({ name: 0 }) : setData({ name: 1 });
     arr[ind].amount += d;
 
     if (arr[ind].amount === 0) arr[ind].amount = 1;
     setCart([...arr]);
   };
-  
+
   const handleRemove = (id) => {
     const arr = cart.filter((item) => item._id !== id);
     setCart(arr);
     handlePrice();
-
   };
 
   const handlePrice = () => {
@@ -52,9 +49,9 @@ export default function Cart() {
   };
 
   useEffect(() => {
-    const cart_ = JSON.parse(localStorage.getItem('cart'))
+    const cart_ = JSON.parse(localStorage.getItem("cart"));
     if (cart_) {
-        setCart(cart_)
+      setCart(cart_);
     }
     handlePrice();
   });
@@ -63,76 +60,113 @@ export default function Cart() {
     let ans = 0;
     let discount = 0;
     cart.map((item) => (ans += item.amount * item.price));
-    cart.map((item) => (discount += item.amount * (item.price  * (item.discount)/100)));
-    localStorage.setItem('price',ans)
-    localStorage.setItem('discount',discount)
-    localStorage.setItem('cart',cart)
-    router.push('/checkout')
-}
+    cart.map(
+      (item) => (discount += item.amount * ((item.price * item.discount) / 100))
+    );
+    localStorage.setItem("price", ans);
+    localStorage.setItem("discount", discount);
+    localStorage.setItem("cart", cart);
+    router.push("/checkout");
+  };
 
   return (
-     <div class="site-wrap">
-     <Header />
-    
-     <div class="bg-light py-3">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 mb-0"><a href="index.html">Cart</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">Shop</strong></div>
+    <div class="site-wrap">
+      <Header />
+
+      <div class="bg-light py-3">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 mb-0">
+              <a href="index.html">Cart</a> <span class="mx-2 mb-0">/</span>{" "}
+              <strong class="text-black">Shop</strong>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="site-section">
-      <div class="container">
-        <div class="row mb-5">
-          <form class="col-md-12" method="post">
-            <div class="site-blocks-table">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th class="product-thumbnail">Image</th>
-                    <th class="product-name">Product</th>
-                    <th class="product-price">Unit Price</th>
-                    <th class="product-quantity">Quantity</th>
-                    
-                    <th class="product-remove">Remove</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {cart.map((item) => (
-                  <tr>
-                  
-                    <td class="product-thumbnail">
-                      <img src={item.image_path} layout='fill' alt="Image" class="img-fluid" />
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">{item.name}</h2>
-                    </td>
-                    <td>{item.price}</td>
-                    <td>
-                      { item.count ? (
-                      <div class="input-group mb-3 ml-6" style={{maxWidth: "120px"}}>
-                        <div class="input-group-prepend">
-                          <button onClick={() => handleChange(item, -1)} class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center" value={item.amount} placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" />
-                        <div class="input-group-append">
-                          <button onClick={() => handleChange(item, 1)} class="btn btn-outline-primary " type="button">+</button>
-                        </div>
-                      </div>) : (
-                        <div>
-                          {/* {setData({name : 1 })} */}
-                          <p>Not Applicable</p>
-                        </div>
-                      )}
-                      
+      <div class="site-section">
+        <div class="container">
+          <div class="row mb-5">
+            <form class="col-md-12" method="post">
+              <div class="site-blocks-table">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th class="product-thumbnail">Image</th>
+                      <th class="product-name">Product</th>
+                      <th class="product-price">Unit Price</th>
+                      <th class="product-quantity">Quantity</th>
 
-                    </td>
-                    
-                    <td><button onClick={() => handleRemove(item._id)} class="btn btn-primary btn-sm">X</button></td>
-                  </tr>
-                  ))}
-                  {/* <tr>
+                      <th class="product-remove">Remove</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cart.map((item) => (
+                      <tr>
+                        <td class="product-thumbnail">
+                          <img
+                            src={item.image_path}
+                            layout="fill"
+                            alt="Image"
+                            class="img-fluid"
+                          />
+                        </td>
+                        <td class="product-name">
+                          <h2 class="h5 text-black">{item.name}</h2>
+                        </td>
+                        <td>{item.price}</td>
+                        <td>
+                          {item.count ? (
+                            <div
+                              class="input-group mb-3 ml-6"
+                              style={{ maxWidth: "120px" }}
+                            >
+                              <div class="input-group-prepend">
+                                <button
+                                  onClick={() => handleChange(item, -1)}
+                                  class="btn btn-outline-primary js-btn-minus"
+                                  type="button"
+                                >
+                                  &minus;
+                                </button>
+                              </div>
+                              <input
+                                type="text"
+                                class="form-control text-center"
+                                value={item.amount}
+                                placeholder=""
+                                aria-label="Example text with button addon"
+                                aria-describedby="button-addon1"
+                              />
+                              <div class="input-group-append">
+                                <button
+                                  onClick={() => handleChange(item, 1)}
+                                  class="btn btn-outline-primary "
+                                  type="button"
+                                >
+                                  +
+                                </button>
+                              </div>
+                            </div>
+                          ) : (
+                            <div>
+                              {/* {setData({name : 1 })} */}
+                              <p>Not Applicable</p>
+                            </div>
+                          )}
+                        </td>
+
+                        <td>
+                          <button
+                            onClick={() => handleRemove(item._id)}
+                            class="btn btn-primary btn-sm"
+                          >
+                            X
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                    {/* <tr>
                     <td class="product-thumbnail">
                       <img src="images/cloth_2.jpg" layout='fill' alt="Image" class="img-fluid" />
                     </td>
@@ -155,24 +189,28 @@ export default function Cart() {
                     <td>$49.00</td>
                     <td><a href="#" class="btn btn-primary btn-sm">X</a></td>
                   </tr> */}
-                </tbody>
-              </table>
-            </div>
-          </form>
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-            <div class="row mb-5">
-              <div class="col-md-6 mb-3 mb-md-0">
-                <Link href='/shop' ><button class="btn btn-primary btn-sm btn-block">Continue Shopping</button></Link>
+                  </tbody>
+                </table>
               </div>
-              {/* <div class="col-md-6">
+            </form>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row mb-5">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <Link href="/shop">
+                    <button class="btn btn-primary btn-sm btn-block">
+                      Continue Shopping
+                    </button>
+                  </Link>
+                </div>
+                {/* <div class="col-md-6">
                 <button class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button>
               </div> */}
-            </div>
-            <div class="row">
-              {/* <div class="col-md-12">
+              </div>
+              <div class="row">
+                {/* <div class="col-md-12">
                 <label class="text-black h4" for="coupon">Coupon</label>
                 <p>Enter your coupon code if you have one.</p>
               </div>
@@ -182,36 +220,43 @@ export default function Cart() {
               <div class="col-md-4">
                 <button class="btn btn-primary btn-sm">Apply Coupon</button>
               </div> */}
+              </div>
             </div>
-          </div>
-          <div class="col-md-6 pl-5">
-            <div class="row justify-content-end">
-              <div class="col-md-7">
-                <div class="row">
-                  <div class="col-md-12 text-right border-bottom mb-5">
-                    <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+            <div class="col-md-6 pl-5">
+              <div class="row justify-content-end">
+                <div class="col-md-7">
+                  <div class="row">
+                    <div class="col-md-12 text-right border-bottom mb-5">
+                      <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                    </div>
                   </div>
-                </div>
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <span class="text-black">Subtotal</span>
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                      <span class="text-black">Subtotal</span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                      <strong class="text-black">{prices}</strong>
+                    </div>
                   </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">{prices}</strong>
+                  <div class="row mb-5">
+                    <div class="col-md-6">
+                      <span class="text-black">Total</span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                      <strong class="text-black">{prices}</strong>
+                    </div>
                   </div>
-                </div>
-                <div class="row mb-5">
-                  <div class="col-md-6">
-                    <span class="text-black">Total</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">{prices}</strong>
-                  </div>
-                </div>
 
-                <div class="row">
-                  <div class="col-md-12">
-                  <button class="btn btn-primary btn-lg py-3 btn-block" onClick={checkout} >Proceed To Checkout</button>                    {/* <Link to="/checkout"><button type="button" class="btn btn-primary" data-bs-toggle="button">Checkout</button></Link> */}
+                  <div class="row">
+                    <div class="col-md-12">
+                      <button
+                        class="btn btn-primary btn-lg py-3 btn-block"
+                        onClick={checkout}
+                      >
+                        Proceed To Checkout
+                      </button>{" "}
+                      {/* <Link to="/checkout"><button type="button" class="btn btn-primary" data-bs-toggle="button">Checkout</button></Link> */}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -219,10 +264,8 @@ export default function Cart() {
           </div>
         </div>
       </div>
-    </div>
-    
-     <Footer />
-   </div>
 
-  )
+      <Footer />
+    </div>
+  );
 }
